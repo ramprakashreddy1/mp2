@@ -37,6 +37,12 @@ jobs:
       - name: Build site
         run: npm run build
 
+      # GitHub Pages does not provide a history fallback for client-side routes.
+      # Reusing the app shell as the 404 page lets bookmarked detail URLs load
+      # React Router, which then renders the requested route.
+      - name: Add single-page app fallback
+        run: cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
