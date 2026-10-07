@@ -266,7 +266,7 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(16rem, 1fr) minmax(11rem, 0.34fr) auto;
+  grid-template-columns: minmax(16rem, 1fr) minmax(11rem, 0.34fr) minmax(18rem, 0.6fr);
   align-items: end;
   gap: 0.9rem;
   margin: -0.15rem 0 1.5rem;
@@ -335,7 +335,6 @@
   transform: translateY(-50%);
 }
 
-.sort-button,
 .button {
   min-height: 3.15rem;
   border: 2px solid var(--ink);
@@ -345,29 +344,75 @@
   transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
-.sort-button {
+.sort-order {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sort-order legend {
+  margin-bottom: 0.42rem;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.sort-order__options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+  min-height: 3.15rem;
+  padding: 0.25rem;
+  border: 2px solid var(--line);
+  border-radius: 0.7rem;
+  background: #f8faff;
+}
+
+.sort-order__options button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0 1.15rem;
+  gap: 0.38rem;
+  min-width: 0;
+  border: 0;
+  border-radius: 0.45rem;
+  color: var(--ink-soft);
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 850;
+  transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.sort-order__options button span {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.sort-order__options button:not(.is-active):hover {
+  color: var(--ink);
+  background: var(--paper-blue);
+}
+
+.sort-order__options button.is-active {
   color: var(--ink);
   background: var(--yellow);
-  box-shadow: 3px 3px 0 var(--ink);
-  font-size: 0.78rem;
+  box-shadow: inset 0 0 0 2px var(--ink), 2px 2px 0 var(--ink);
 }
 
-.sort-button span {
-  font-size: 1.25rem;
+.sort-order__options button.is-active::after {
+  content: '✓';
+  font-size: 0.68rem;
 }
 
-.sort-button:hover,
 .button:hover {
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0 var(--ink);
 }
 
-.sort-button:active,
 .button:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--ink);

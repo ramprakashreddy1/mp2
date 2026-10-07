@@ -41,12 +41,6 @@ function ListPage() {
     })
   }, [pokemon, query, sortDirection, sortField])
 
-  function toggleSortDirection() {
-    setSortDirection((direction) =>
-      direction === 'ascending' ? 'descending' : 'ascending',
-    )
-  }
-
   return (
     <>
       <section className="page-heading">
@@ -89,17 +83,29 @@ function ListPage() {
           </select>
         </label>
 
-        <button
-          className="sort-button"
-          type="button"
-          onClick={toggleSortDirection}
-          aria-label={`Sort ${sortDirection === 'ascending' ? 'descending' : 'ascending'}`}
-        >
-          <span aria-hidden="true">
-            {sortDirection === 'ascending' ? '↑' : '↓'}
-          </span>
-          {sortDirection === 'ascending' ? 'Ascending' : 'Descending'}
-        </button>
+        <fieldset className="sort-order">
+          <legend>Order</legend>
+          <div className="sort-order__options">
+            <button
+              className={sortDirection === 'ascending' ? 'is-active' : ''}
+              type="button"
+              onClick={() => setSortDirection('ascending')}
+              aria-pressed={sortDirection === 'ascending'}
+            >
+              <span aria-hidden="true">↑</span>
+              Ascending
+            </button>
+            <button
+              className={sortDirection === 'descending' ? 'is-active' : ''}
+              type="button"
+              onClick={() => setSortDirection('descending')}
+              aria-pressed={sortDirection === 'descending'}
+            >
+              <span aria-hidden="true">↓</span>
+              Descending
+            </button>
+          </div>
+        </fieldset>
       </section>
 
       {isLoading && <LoadingState />}
